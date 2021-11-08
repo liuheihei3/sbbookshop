@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!--v-model的修饰符：
+    lazy：失去焦点再收集数据
+    number：输入字符串再转为有效的数字
+    trim：输入首尾空格过滤
+-->
+<body>
+    <div id="root">
+        <form @submit.prevent="haha"><!--prevent的作用是阻止默认行为-->
+            <label for="demo1">账号：</label> <!--label的for属性指向复选框的id-->
+            <input type="text" id="demo1" v-model.trim="account"> <br/><br/>
+            <label for="demo2">密码：</label>
+            <input type="password" id="demo2" v-model="password"><br/><br/>
+            <label for="demo3">年龄：</label>
+            <input type="number" id="demo3" v-model.number="age"><br/><br/>
+            性别：
+            男<input type="radio" name="sex" v-model="sex" value="man"><!--radio要配置value值-->
+            女<input type="radio" name="sex" v-model="sex" value="felman"><br/><br/>
+            爱好：
+            <label for="hobby1">抽烟</label><input type="checkbox" id="hobby1" v-model="hobby" value="chouyan"><!--checkbox要指定value同时要将v-model对应的值写成数组-->
+            <label for="hobby2">喝酒</label><input type="checkbox" id="hobby2" v-model="hobby" value="hejiu">
+            <label for="hobby3">烫头</label><input type="checkbox" id="hobby3" v-model="hobby" value="tangtou"><br/><br/>
+            所属小区
+            <select v-model="city">
+                <option value="">请选择小区</option>
+                <option value="tangchen">汤臣</option>
+                <option value="wanda">万达</option>
+                <option value="xuanni">轩尼</option>
+            </select><br/><br/>
+            其他信息:<textarea v-model.lazy="orther"></textarea><br/><br/>
+            阅读并接受<a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?p=38">《用户协议》</a><input type="checkbox" v-model="agree"><br/><br/>
+            <button>提交</button>
+            
+
+
+        </form>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+                account:'',
+                password:'',
+                age:'',
+                sex:'',
+                hobby:[],
+                city:'',
+                orther:'',
+                agree:''
+
+
+            },
+            methods: {
+                haha(){
+                    alert("提交成功")
+                }
+                
+            },
+
+        })
+    </script>
+
+</body>
+</html>
